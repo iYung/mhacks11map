@@ -9,7 +9,8 @@ index.setSettings({
 
 var platform = new H.service.Platform({
     'app_id': 'hzNspoXnIKblIXoeiLz2',
-    'app_code': 'mLZ0PvttGr5bErN72jLmtw'
+    'app_code': 'mLZ0PvttGr5bErN72jLmtw',
+    useHTTPS: true
 });
 
 // Obtain the default map types from the platform object:
