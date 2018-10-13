@@ -15,16 +15,23 @@ var platform = new H.service.Platform({
 // Obtain the default map types from the platform object:
 var defaultLayers = platform.createDefaultLayers();
 
-navigator.geolocation.getCurrentPosition(populateMap);
+index.search(
+    {
+      query: '',
+      attributesToRetrieve: ['_geoloc'],
+      hitsPerPage: 1,
+    }
+).then(res => {
+    populateMap(res.hits[0]["_geoloc"]);
+});
 
 function populateMap(pos) {
-
     var map = new H.Map(
     document.getElementById('map'),
     defaultLayers.normal.map,
     {
       zoom: 14,
-      center: { lat: pos.coords.latitude, lng: pos.coords.longitude }
+      center: { lat: pos.lat, lng: pos.lng }
     });
 
     var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
